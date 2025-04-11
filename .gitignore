@@ -1,0 +1,6 @@
+.venv
+build
+*.spec
+__pycache__
+*.docx
+New*
