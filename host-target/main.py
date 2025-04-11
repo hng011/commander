@@ -28,7 +28,7 @@ def start_server():
         while True:
             try:
                 data = conn.recv(BUF_SIZE)
-                print("retrieved data:", data.decode())
+                # print("retrieved data:", data.decode())
                 if not data: 
                     break
                 

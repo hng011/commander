@@ -9,6 +9,10 @@ def send_cmd(cmd: str, conn: socket.socket):
     
     if cmd.startswith("upfile "):
         filepath = cmd[len("upfile "):]
+        
+        if not os.path.exists(filepath):
+            return f"[ERRCONTR] Missing file"
+        
         conn.sendall(cmd.encode())
 
         status = conn.recv(BUF_SIZE // 4)
@@ -17,7 +21,7 @@ def send_cmd(cmd: str, conn: socket.socket):
                 conn.sendall(f.read() + FFLAG_END)
             
             return conn.recv(BUF_SIZE // 4).decode()
-            
+
         else:
             return f"[ERRCONTR] Missing HOST-TARGET"
         
